@@ -1,9 +1,16 @@
-﻿namespace BootCamp.Chapter
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace BootCamp.Chapter
 {
     /// <summary>
     /// Part 2.
     /// </summary>
-    public static class PeoplesBalances
+    public class PeoplesBalances
     {
         /// <summary>
         /// Here are people and their balances.
@@ -11,12 +18,10 @@
         /// Line is made by name (no spaces), follow by balances separated by comma (",").
         /// Example: "Gily, 1, 0". Means that currently Gily has 0, which dropped from initial 1.
         /// </summary>
-        public static string[] Balances => new[]
-        {
-            "Tom, 15.5, 200, 500, 600, 200, 500, 1000",
-            "Katherine, 85, 0, -500, 0, 500, 10000, 1500.99",
-            "Bill, 99999, , 99970, 99900",
-            "Catie, 0, 500, 990, 1300"
-        };
+        public static List<string> Balances;
+        
+
+        
     }
 }
+
