@@ -26,10 +26,10 @@ namespace BootCamp.Chapter
                 people.Add(person);
             }
             
-            var highestBalanceEver = findHighestBalanceEver(balancedict);
-            var personwithbiggestLoss = findPersonWithBIggestLoss(balancedict);
-            var RichestPerson = findRichestPerson(balancedict);
-            var mostpoorperson = findMostPoorPerson(balancedict);
+            var highestBalanceEver = findHighestBalanceEver(people);
+            var personwithbiggestLoss = findPersonWithBIggestLoss(people);
+            var RichestPerson = findRichestPerson(people);
+            var mostpoorperson = findMostPoorPerson(people);
 
 
         
