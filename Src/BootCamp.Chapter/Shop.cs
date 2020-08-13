@@ -20,7 +20,7 @@
             _money = money;
         }
 
-        public Item[] GetItems()
+        public Item[] GetItems(string name)
         {
             return _inventory.GetItems();
         }
@@ -31,6 +31,13 @@
         /// </summary>
         public void Add(Item item)
         {
+            if(GetItems(item.GetName()).Length == 0)
+            {
+                _inventory.AddItem(item);
+            }
+
+
+
         }
 
         /// <summary>
@@ -40,6 +47,13 @@
         /// <param name="name"></param>
         public void Remove(string name)
         {
+            Item[] itemslist = _inventory.GetItems(name);
+            
+            if(itemslist.Length > 0)
+            {
+                
+                _inventory.RemoveItem(itemslist[0]);
+            }
         }
 
         /// <summary>
@@ -50,7 +64,8 @@
         /// <returns>Price of an item.</returns>
         public decimal Buy(Item item)
         {
-            return 0;
+            _inventory.AddItem(item);
+            _money -= item.GetPrice();
         }
 
         /// <summary>
@@ -64,7 +79,15 @@
         /// </returns>
         public Item Sell(string item)
         {
-            return null;
+            Item[] itemslist = _inventory.GetItems(item);
+            
+            if(itemslist.Length > 0)
+            {
+                
+                _money += itemslist[0].GetPrice();
+            }
+
+            return itemslist[0];
         }
     }
 }

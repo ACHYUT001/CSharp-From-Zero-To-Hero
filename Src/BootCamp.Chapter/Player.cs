@@ -15,7 +15,7 @@ namespace BootCamp.Chapter
         /// <summary>
         /// Everyone can carry this much weight at least.
         /// </summary>
-        private const int baseCarryWeight = 30;
+        private const int _baseCarryWeight = 30;
 
         private string _name;
         private int _hp;
@@ -23,7 +23,7 @@ namespace BootCamp.Chapter
         /// <summary>
         /// Each point of strength allows extra 10 kg to carry.
         /// </summary>
-        private int _strenght;
+        private int _strength;
 
         /// <summary>
         /// Player items. There can be multiple of items with same name.
@@ -34,8 +34,11 @@ namespace BootCamp.Chapter
         /// </summary>
         private Equipment _equipment;
 
+        private int  _maxweight;
+        
         public Player()
         {
+            _maxweight = _maxweight = _baseCarryWeight + (_strength*10); 
         }
 
         /// <summary>
@@ -51,11 +54,18 @@ namespace BootCamp.Chapter
         /// </summary>
         public void AddItem(Item item)
         {
+            _inventory.AddItem(item);
         }
 
         public void Remove(Item item)
         {
-
+            Item[] itemslist = _inventory.GetItems(item.GetName());
+            
+            if(itemslist.Length > 0)
+            {
+                
+                _inventory.RemoveItem(itemslist[0]);
+            }
         }
 
         /// <summary>
@@ -64,7 +74,7 @@ namespace BootCamp.Chapter
         /// <param name="name"></param>
         public Item[] GetItems(string name)
         {
-            return new Item[0];
+            return _inventory.GetItems(name);
         }
 
         #region Extra challenge: Equipment
@@ -75,7 +85,16 @@ namespace BootCamp.Chapter
         // Implement equiping logic and total defense/attack calculation.
         public void Equip(Headpiece head)
         {
+            if(_equipment.GetTotalWeight() + head.GetWeight() > _maxweight)
+            {
+                System.Console.WriteLine("cannot equip");
 
+            }
+
+            else
+            {
+                _equipment.SetHead(head);
+            }
         }
 
         public void Equip(Chestpiece head)
