@@ -12,11 +12,24 @@
             Password = password;
         }
 
+        Credentials()
+        {
+
+        }
+
         // TODO: Implement properly.
         public static bool TryParse(string input, out Credentials credentials)
         {
-            credentials = default;
-            return false;
+            if(input == null) 
+            { 
+                credentials = new Credentials();
+                return false;
+            }
+            
+            var credential = input.Split(":");
+            credentials = new Credentials(credential[0], credential[1]);
+            return true;
+            
         }
     }
 }
