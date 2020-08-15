@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace BootCamp.Chapter
 {
@@ -10,6 +11,7 @@ namespace BootCamp.Chapter
 
         public ContactsCenter(string peopleFile)
         {
+            
             // load people
         }
 
@@ -21,6 +23,13 @@ namespace BootCamp.Chapter
         {
             var people = new List<Person>();
             // ToDo: implement applying filter.
+            foreach(Person p in _people)
+            {
+                if(predicate(p))
+                {
+                    people.Add(p);
+                }
+            }
             return people;
         }
     }

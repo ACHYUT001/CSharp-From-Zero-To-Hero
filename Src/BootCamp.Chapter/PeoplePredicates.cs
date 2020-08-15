@@ -10,20 +10,29 @@ namespace BootCamp.Chapter
         /// a) over 18, who do not live in UK, whose surename does not contain letter 'a'.
         /// </summary>
         /// <returns></returns>
-        public static bool IsA(Person person) => false;
+        
+        static Predicate<Person> isA = (person) => person.age>18 && person.address.ToUpper() != "UK" && !person.surname.Contains('a');
+        public static bool IsA(Person person) => isA(person);
+        
 
         /// <summary>
         /// b) under 18,  who do not live in UK, whose surename does not contain letter 'a'.  
         /// </summary>
         /// <param name="person"></param>
         /// <returns></returns>
-        public static bool IsB(Person person) => false;
+        static Predicate<Person> isB = (person) => person.age<18 && person.address.ToUpper() != "UK" && !person.surname.Contains('a');
+        public static bool IsB(Person person) => isB(person);
 
         /// <summary>
         /// c) who do not live in UK, whose surename and name does not contain letter 'a'.  
         /// </summary>
         /// <param name="person"></param>
         /// <returns></returns>
-        public static bool IsC(Person person) => false;
+
+        static Predicate<Person> isC = (person) =>  person.address.ToUpper() != "UK" && !person.surname.Contains('a') && !person.name.Contains('a');
+        public static bool IsC(Person person) => isC(person);
     }
+
+
+    
 }
